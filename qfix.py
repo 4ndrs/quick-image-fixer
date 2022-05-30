@@ -19,7 +19,7 @@ dest_dir = './tmp'
 
 for file in os.listdir(src_dir):
     file_path = os.path.join(src_dir, file)
-    file_type = subprocess.run(['file', file_path], capture_output=True).stdout.decode()
+    file_type = subprocess.check_output(['file', file_path]).decode()
     is_tiff = re.search(r'.*: TIFF', file_type) is not None
     if is_tiff:
         with Image.open(file_path) as im:
